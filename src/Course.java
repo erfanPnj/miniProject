@@ -1,27 +1,26 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
-    private String courseName;
-    private Teacher courseTeacher;
-    private int countOfUnits;
-    private List<Student> studentList;
+    private final String courseName;
+    private final Teacher courseTeacher;
+    private final int countOfUnits;
+    private List<Student> studentList = new ArrayList<>();
     private boolean status;
-    private List<Assignment> assignmentList;
     private int countOfAssignments;
-    private String examDate;
-    private List<Assignment> activeProjects;
-    private List<Assignment> deactiveProjects;
+    private final String examDate; // it must be in the format of Year.Month.Day: 2024.4.10;
+    private List<Assignment> activeProjects = new ArrayList<>();
+    private List<Assignment> deactiveProjects = new ArrayList<>();
     private int presentedSemester;
-    public void setCourseName(String courseName) {
+    private List<Double> scores = new ArrayList<>();
+
+    public Course(String courseName, Teacher courseTeacher, int countOfUnits, String examDate, int presentedSemester) {
         this.courseName = courseName;
-    }
-
-    public void setCourseTeacher(Teacher courseTeacher) {
         this.courseTeacher = courseTeacher;
-    }
-
-    public void setCountOfUnits(int countOfUnits) {
         this.countOfUnits = countOfUnits;
+        this.examDate = examDate;
+        this.presentedSemester = presentedSemester;
+        Faculty.getCourses().add(this);
     }
 
     public void setStudentList(List<Student> studentList) {
@@ -32,16 +31,8 @@ public class Course {
         this.status = status;
     }
 
-    public void setAssignmentList(List<Assignment> assignmentList) {
-        this.assignmentList = assignmentList;
-    }
-
     public void setCountOfAssignments(int countOfAssignments) {
         this.countOfAssignments = countOfAssignments;
-    }
-
-    public void setExamDate(String examDate) {
-        this.examDate = examDate;
     }
 
     public void setActiveProjects(List<Assignment> activeProjects) {
@@ -54,6 +45,10 @@ public class Course {
 
     public void setPresentedSemester(int presentedSemester) {
         this.presentedSemester = presentedSemester;
+    }
+
+    public void setScores(List<Double> scores) {
+        this.scores = scores;
     }
 
     public String getCourseName() {
@@ -76,10 +71,6 @@ public class Course {
         return status;
     }
 
-    public List<Assignment> getAssignmentList() {
-        return assignmentList;
-    }
-
     public int getCountOfAssignments() {
         return countOfAssignments;
     }
@@ -100,9 +91,13 @@ public class Course {
         return presentedSemester;
     }
 
+    public List<Double> getScores() {
+        return scores;
+    }
+
     public void printStudentList () {
         for (Student s : studentList) {
-            System.out.println(s.getName());
+            System.out.println(s.getId());
         }
     }
 
@@ -111,15 +106,13 @@ public class Course {
     }
 
     public void eliminateStudent (Student student) {
-        for (Student s : studentList) {
-            if (s.getName().equals(student.getName())) {
-                studentList.remove(s);
-            }
-        }
+        studentList.removeIf(s -> s.getId().equals(student.getId()));
     }
 
-
-
+    public double highestScore () {
+        scores.sort((Double::compareTo));
+        return scores.getLast();
+    }
 
 
 }

@@ -1,25 +1,19 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Teacher {
-    private String name;
-    private String familyName;
+    private final String name;
+    private final String familyName;
     private int presentedCoursesCount;
-    private List<Course> presentedCourses;
+    private List<Course> presentedCourses = new ArrayList<>();
 
     public Teacher(String name, String familyName, int presentedCoursesCount) {
         this.name = name;
         this.familyName = familyName;
         this.presentedCoursesCount = presentedCoursesCount;
-        Faculty.getTeachers().add(this);
+        Faculty.getTeachers().add(this); // this teacher should be added to the faculty's teachers after initialization.
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setFamilyName(String familyName) {
-        this.familyName = familyName;
-    }
 
     public void setPresentedCoursesCount(int presentedCoursesCount) {
         this.presentedCoursesCount = presentedCoursesCount;
@@ -54,35 +48,49 @@ public class Teacher {
     }
 
     public void defineNewAssignment (Course course, String assignmentName,
-                                     int assignmentStatus, boolean deadline) {
+                                     boolean assignmentStatus, int deadline) {
         for (Course c : presentedCourses) {
             if (c.getCourseName().equals(course.getCourseName())) {
-                c.getAssignmentList().add(new Assignment(assignmentName, assignmentStatus, deadline));
+                c.getActiveProjects().add(new Assignment(assignmentName, deadline, assignmentStatus));
             }
         }
     }
 
-    public void deleteAnAssignment (String courseName, Assignment assignment) {
+    public void deleteAnAssignment (String courseName, String assignmentName) {
         for (Course c : presentedCourses) {
             if (c.getCourseName().equals(courseName)) {
-                c.getAssignmentList().remove(assignment);
+                for (Assignment a : c.getActiveProjects()) {
+                    if (a.getName().equals(assignmentName))
+                        c.getActiveProjects().remove(a);
+                }
+                for (Assignment a : c.getDeactiveProjects()) {
+                    if (a.getName().equals(assignmentName))
+                        c.getDeactiveProjects().remove(a);
+                }
             }
         }
     }
 
-    public void rateStudents (String courseName, String studentName, double point) {
+    public void rateStudents (String courseName, String studentId, double point) {
         for (Course c : presentedCourses) {
             if (c.getCourseName().equals(courseName)) {
+                c.getScores().add(point);
                 for (Student s : c.getStudentList()) {
-                    if (s.getName().equals(studentName)) {
+                    if (s.getId().equals(studentId)) {
+                        s.setCountOfAllOfGrades(s.getCountOfAllOfGrades() + 1); // A grade has been added.
                         s.setAllOfPoints(s.getAllOfPoints() + point);
                         if (c.getPresentedSemester() == Faculty.getSemester()) {
+                            s.setCountOfThisSemesterGrades(s.getCountOfThisSemesterGrades() + 1); // A grade has been added.
                             s.setThisSemesterPoints(s.getThisSemesterPoints() + point);
                         }
                     }
                 }
             }
         }
+    }
+
+    public void addCourseToThisTeacher (Course course) {
+        presentedCourses.add(course);
     }
 
 }

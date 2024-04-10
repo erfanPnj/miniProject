@@ -1,12 +1,12 @@
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Faculty {
     private final String name;
     private static int semester;
-    private static List<Student> students;
-    private static List<Teacher> teachers;
-    private static List<Course> courses;
+    private static List<Student> students = new ArrayList<>();
+    private static List<Teacher> teachers = new ArrayList<>();
+    private static List<Course> courses = new ArrayList<>();
 
     public Faculty (String name) {
         this.name = name;

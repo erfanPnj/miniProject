@@ -7,4 +7,16 @@ public class Assignment {
         this.deadline = deadline;
         this.status = status;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
 }

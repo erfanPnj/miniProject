@@ -1,15 +1,18 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
-    private String name;
-    private String studentId;
+    private final String name;
+    private final String studentId;
     private int countOfCourses;
     private int countOfUnits;
-    private List<Course> courses;
+    private List<Course> courses = new ArrayList<>();
     private double allOfPoints = 0;
     private double thisSemesterPoints = 0;
     private double allTimeAverage = 0;
     private double thisSemesterAverage = 0;
+    private double countOfAllOfGrades = 0;
+    private double countOfThisSemesterGrades = 0;
 
 
     public Student (String name, String studentId) {
@@ -18,32 +21,8 @@ public class Student {
         Faculty.getStudents().add(this);
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
-    public void setCountOfCourses(int countOfCourses) {
-        this.countOfCourses = countOfCourses;
-    }
-
-    public void setCountOfUnits(int countOfUnits) {
-        this.countOfUnits = countOfUnits;
-    }
-
     public void setCourses(List<Course> courses) {
         this.courses = courses;
-    }
-
-    public void setAllTimeAverage(double allTimeAverage) {
-        this.allTimeAverage = allTimeAverage;
-    }
-
-    public void setThisSemesterAverage(double thisSemesterAverage) {
-        this.thisSemesterAverage = thisSemesterAverage;
     }
 
     public void setAllOfPoints(double allOfPoints) {
@@ -53,11 +32,23 @@ public class Student {
     public void setThisSemesterPoints(double thisSemesterPoints) {
         this.thisSemesterPoints = thisSemesterPoints;
     }
-    public String getName() {
-        return name;
+
+    public void setCountOfAllOfGrades(double countOfAllOfGrades) {
+        this.countOfAllOfGrades = countOfAllOfGrades;
     }
 
-    public String getStudentId() {
+    public double getCountOfAllOfGrades() {
+        return countOfAllOfGrades;
+    }
+
+    public double getCountOfThisSemesterGrades() {
+        return countOfThisSemesterGrades;
+    }
+
+    public void setCountOfThisSemesterGrades(double countOfGrades) {
+        this.countOfThisSemesterGrades = countOfGrades;
+    }
+    public String getId() {
         return studentId;
     }
 
@@ -89,6 +80,10 @@ public class Student {
         return thisSemesterPoints;
     }
 
+    public void addCourseAndUnit (Course course) {
+        this.courses.add(course);
+        this.countOfUnits += course.getCountOfUnits();
+    }
     public void printStudentCourses () {
         for (Course c : courses) {
             System.out.println(c.getCourseName());
@@ -96,10 +91,16 @@ public class Student {
     }
 
     public void printStudentAllTimeAvg () {
-        System.out.println(this.getAllTimeAverage());
+        System.out.println(allOfPoints / countOfAllOfGrades);
     }
 
-    public void printCountOfRegisteredUnits () {
+    public void printRegisteredAvg () {
+        System.out.println(thisSemesterPoints / countOfThisSemesterGrades);
+    }
+
+    public void printCountOfUnits () {
         System.out.println(this.getCountOfUnits());
     }
+
+
 }
