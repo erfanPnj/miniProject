@@ -7,19 +7,20 @@ public class Course {
     private final int countOfUnits;
     private List<Student> studentList = new ArrayList<>();
     private boolean status;
-    private int countOfAssignments;
+    private int countOfAssignments = 0;
     private final String examDate; // it must be in the format of Year.Month.Day: 2024.4.10;
     private List<Assignment> activeProjects = new ArrayList<>();
     private List<Assignment> deactiveProjects = new ArrayList<>();
     private int presentedSemester;
     private List<Double> scores = new ArrayList<>();
 
-    public Course(String courseName, Teacher courseTeacher, int countOfUnits, String examDate, int presentedSemester) {
+    public Course(String courseName, Teacher courseTeacher, int countOfUnits, String examDate, int presentedSemester, boolean status) {
         this.courseName = courseName;
         this.courseTeacher = courseTeacher;
         this.countOfUnits = countOfUnits;
         this.examDate = examDate;
         this.presentedSemester = presentedSemester;
+        this.status = status;
         Faculty.getCourses().add(this);
     }
 
@@ -37,10 +38,6 @@ public class Course {
 
     public void setActiveProjects(List<Assignment> activeProjects) {
         this.activeProjects = activeProjects;
-    }
-
-    public void setDeactiveProjects(List<Assignment> deactiveProjects) {
-        this.deactiveProjects = deactiveProjects;
     }
 
     public void setPresentedSemester(int presentedSemester) {
@@ -97,20 +94,24 @@ public class Course {
 
     public void printStudentList () {
         for (Student s : studentList) {
-            System.out.println(s.getId());
+            System.out.println(s.getName());
         }
     }
 
     public void addStudent (Student student) {
-        studentList.add(student);
+        if (this.isStatus())
+            studentList.add(student);
     }
 
     public void eliminateStudent (Student student) {
         studentList.removeIf(s -> s.getId().equals(student.getId()));
+        // after eliminating a student from a course, it should not keep the course and unit:
+        student.setCountOfCourses(student.getCountOfCourses() - 1);
+        student.setCountOfUnits(student.getCountOfUnits() - this.countOfUnits);
     }
 
     public double highestScore () {
-        scores.sort((Double::compareTo));
+        scores.sort((Double::compareTo)); // ascending sort will put the highest score at last index:
         return scores.getLast();
     }
 

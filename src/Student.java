@@ -6,11 +6,9 @@ public class Student {
     private final String studentId;
     private int countOfCourses;
     private int countOfUnits;
-    private List<Course> courses = new ArrayList<>();
+    private final List<Course> courses = new ArrayList<>();
     private double allOfPoints = 0;
     private double thisSemesterPoints = 0;
-    private double allTimeAverage = 0;
-    private double thisSemesterAverage = 0;
     private double countOfAllOfGrades = 0;
     private double countOfThisSemesterGrades = 0;
 
@@ -19,10 +17,6 @@ public class Student {
         this.name = name;
         this.studentId = studentId;
         Faculty.getStudents().add(this);
-    }
-
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
     }
 
     public void setAllOfPoints(double allOfPoints) {
@@ -48,6 +42,17 @@ public class Student {
     public void setCountOfThisSemesterGrades(double countOfGrades) {
         this.countOfThisSemesterGrades = countOfGrades;
     }
+
+    public void setCountOfCourses(int countOfCourses) {
+        this.countOfCourses = countOfCourses;
+    }
+
+    public void setCountOfUnits(int countOfUnits) {
+        this.countOfUnits = countOfUnits;
+    }
+    public String getName() {
+        return name;
+    }
     public String getId() {
         return studentId;
     }
@@ -64,12 +69,14 @@ public class Student {
         return courses;
     }
 
+
+
     public double getAllTimeAverage() {
-        return allTimeAverage;
+        return allOfPoints / countOfAllOfGrades;
     }
 
     public double getThisSemesterAverage() {
-        return thisSemesterAverage;
+        return thisSemesterPoints / countOfThisSemesterGrades;
     }
 
     public double getAllOfPoints() {
@@ -91,11 +98,13 @@ public class Student {
     }
 
     public void printStudentAllTimeAvg () {
-        System.out.println(allOfPoints / countOfAllOfGrades);
+        System.out.println(this.getAllTimeAverage());
     }
 
+
+
     public void printRegisteredAvg () {
-        System.out.println(thisSemesterPoints / countOfThisSemesterGrades);
+        System.out.println(this.getThisSemesterAverage());
     }
 
     public void printCountOfUnits () {

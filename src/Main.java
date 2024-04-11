@@ -1,13 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        Faculty computerEngineering = new Faculty("computerEngineering");
-        computerEngineering.setSemester(2);
-
+        new Faculty("computerEngineering", 2);
 
         Teacher sa = new Teacher("s", "a", 1);
         Teacher ys = new Teacher("y", "s", 1);
-        Course AP = new Course("ap", sa, 3, "2024.6.24", 2);
-        Course EC = new Course("ec", ys, 3, "2024.6.27", 3);
+        Course AP = new Course("ap", sa, 3, "2024.6.24", 2, true);
+        Course EC = new Course("ec", ys, 3, "2024.6.27", 3, true);
         sa.addCourseToThisTeacher(AP);
         ys.addCourseToThisTeacher(EC);
 
@@ -17,11 +15,12 @@ public class Main {
         Student s4 = new Student("reza", "12347");
         Student s5 = new Student("sara", "12348");
         Student s6 = new Student("rya", "12349");
+        Student s7 = new Student("mahak", "123410");
 
         sa.defineNewAssignment(AP, "final", true, 70);
         sa.defineNewAssignment(AP, "Mini", true, 14);
         ys.defineNewAssignment(EC, "pspise", true, 30);
-        //sa.deleteAnAssignment("ap", "final");
+        sa.deleteAnAssignment("ap", "Mini");
 
         AP.addStudent(s1);
         AP.addStudent(s2);
@@ -30,6 +29,7 @@ public class Main {
         AP.addStudent(s5);
         AP.addStudent(s6);
         EC.addStudent(s6);
+        sa.addStudentToACourse(s7, AP);
 
         s1.addCourseAndUnit(AP);
         s2.addCourseAndUnit(AP);
@@ -46,6 +46,7 @@ public class Main {
         sa.rateStudents("ap", "12345", 17.78);
         sa.rateStudents("ap", "12344", 19.65);
         ys.rateStudents("ec", "12349", 19);
+        sa.rateStudents("ap", "123410", 19.92);
 
         s6.printCountOfUnits();
         s6.printRegisteredAvg();
@@ -58,6 +59,10 @@ public class Main {
         }
 
         System.out.println(AP.highestScore());
-
+        AP.eliminateStudent(s6);
+        sa.removeStudentFromACourse(s2, AP);
+        AP.printStudentList();
+        s7.printStudentCourses();
+        s6.printCountOfUnits();
     }
 }

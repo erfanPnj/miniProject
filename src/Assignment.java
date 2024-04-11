@@ -12,11 +12,16 @@ public class Assignment {
         return name;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public int getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(int deadline) {
+        this.deadline = deadline;
     }
 
     public boolean isStatus() {
         return status;
     }
 }
+
