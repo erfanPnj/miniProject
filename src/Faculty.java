@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
+// this class is created to make this more real
 public class Faculty {
     private static int semester;
     private static final List<Student> students = new ArrayList<>();

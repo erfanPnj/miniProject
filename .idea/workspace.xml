@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e020a99-af6a-4f99-a075-2d79c42d00c9" name="Changes" comment="Made some modification and improvements on files and also using Main.java for testing methods etc.">
-      <change afterPath="$PROJECT_DIR$/src/CourseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/FacultyTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/StudentTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TeacherTest.java" afterDir="false" />
+    <list default="true" id="9e020a99-af6a-4f99-a075-2d79c42d00c9" name="Changes" comment="Added unit tests with JUnit and more logic, debugged some logical errors and made the code cleaner.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/miniProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assignment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Faculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Faculty.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teacher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +24,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -45,27 +44,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.CourseTest.executor": "Run",
-    "JUnit.FacultyTest.executor": "Run",
-    "JUnit.StudentTest.checkPrintedCourseList.executor": "Debug",
-    "JUnit.StudentTest.executor": "Run",
-    "JUnit.StudentTest.testAllTimeAverage.executor": "Run",
-    "JUnit.StudentTest.testPrintedCountOfUnits.executor": "Run",
-    "JUnit.TeacherTest.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "/home/erfan/uni/miniProject/miniProject/src/Main.java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.CourseTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FacultyTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StudentTest.checkPrintedCourseList.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.StudentTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StudentTest.testAllTimeAverage.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StudentTest.testPrintedCountOfUnits.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TeacherTest.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/home/erfan/uni/miniProject/miniProject/src/Main.java&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="StudentTest.testAllTimeAverage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="miniProject" />
@@ -89,8 +88,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StudentTest.testPrintedCountOfUnits" />
         <item itemvalue="JUnit.StudentTest.testAllTimeAverage" />
+        <item itemvalue="JUnit.StudentTest.testPrintedCountOfUnits" />
       </list>
     </recent_temporary>
   </component>
@@ -135,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712781275582</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added unit tests with JUnit and more logic, debugged some logical errors and made the code cleaner.">
+      <option name="closed" value="true" />
+      <created>1712843232411</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712843232411</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,7 +150,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -153,7 +172,8 @@
     <MESSAGE value="created java files." />
     <MESSAGE value="two more files(Main &amp; Faculty) have been created and other files were changed to create a basic concept." />
     <MESSAGE value="Made some modification and improvements on files and also using Main.java for testing methods etc." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made some modification and improvements on files and also using Main.java for testing methods etc." />
+    <MESSAGE value="Added unit tests with JUnit and more logic, debugged some logical errors and made the code cleaner." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added unit tests with JUnit and more logic, debugged some logical errors and made the code cleaner." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

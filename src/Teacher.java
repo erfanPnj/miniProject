@@ -29,7 +29,8 @@ public class Teacher {
     public void addStudentToACourse (Student student, Course course) {
         if (course.isStatus()) {
             course.addStudent(student);
-            student.addCourseAndUnit(course); // when a teacher adds a student to a course, units and the course should be attached to student
+            // when a teacher adds a student to a course, units and the course should be attached to student, it goes both ways :)
+            student.addCourseAndUnit(course);
         }
     }
 
@@ -49,11 +50,14 @@ public class Teacher {
 
     public void deleteAnAssignment (String courseName, String assignmentName) {
         for (int i = 0; i < presentedCoursesCount; i++) { // using enhanced for loop causes ConcurrentModificationException
+            // so we use traditional i and j loops:
             if (presentedCourses.get(i).getCourseName().equals(courseName)) {
                 // after finding the proper course, we check whether it is an active ot a deactivated project.
                 for (int j = 0; j < presentedCourses.get(i).getActiveProjects().toArray().length; j++) {
+                    // got to presented courses of this teacher -> get the target course -> get the target assignment and
+                    // check its name with the given parameter:
                     if (presentedCourses.get(i).getActiveProjects().get(j).getName().equals(assignmentName)) { // matching the assignment using its name:
-                        presentedCourses.get(i).getActiveProjects().remove(presentedCourses.get(i).getActiveProjects().get(j));
+                        presentedCourses.get(i).getActiveProjects().remove(presentedCourses.get(i).getActiveProjects().get(j)); // remove the target
                         presentedCourses.get(i).setCountOfAssignments(presentedCourses.get(i).getCountOfAssignments() - 1); // decrease count of assignments after deletion
                     }
                 }

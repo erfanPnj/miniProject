@@ -8,7 +8,7 @@ public class Course {
     private List<Student> studentList = new ArrayList<>();
     private boolean status;
     private int countOfAssignments = 0;
-    private final String examDate; // it must be in the format of Year.Month.Day: 2024.4.10;
+    private final String examDate; // it must be a string in the format of Year.Month.Day: 2024.4.10;
     private List<Assignment> activeProjects = new ArrayList<>();
     private List<Assignment> deactiveProjects = new ArrayList<>();
     private int presentedSemester;
@@ -105,7 +105,7 @@ public class Course {
 
     public void eliminateStudent (Student student) {
         studentList.removeIf(s -> s.getId().equals(student.getId()));
-        // after eliminating a student from a course, it should not keep the course and unit:
+        // after eliminating a student from a course, it should drop the course and unit:
         student.setCountOfCourses(student.getCountOfCourses() - 1);
         student.setCountOfUnits(student.getCountOfUnits() - this.countOfUnits);
     }

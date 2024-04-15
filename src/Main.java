@@ -13,9 +13,9 @@ public class Main {
         Student s2 = new Student("ali", "12345");
         Student s3 = new Student("mahan", "12346");
         Student s4 = new Student("reza", "12347");
-        Student s5 = new Student("sara", "12348");
-        Student s6 = new Student("rya", "12349");
-        Student s7 = new Student("mahak", "123410");
+        Student s5 = new Student("meow", "12348");
+        Student s6 = new Student("bluhbluh", "12349");
+        Student s7 = new Student("snoopDogg", "123410");
 
         sa.defineNewAssignment(AP, "final", true, 70);
         sa.defineNewAssignment(AP, "Mini", true, 14);
@@ -47,6 +47,8 @@ public class Main {
         sa.rateStudents("ap", "12344", 19.65);
         ys.rateStudents("ec", "12349", 19);
         sa.rateStudents("ap", "123410", 19.92);
+        sa.rateStudents("ap", "123410", 19.92);
+
 
         s6.printCountOfUnits();
         s6.printRegisteredAvg();
@@ -64,5 +66,7 @@ public class Main {
         AP.printStudentList();
         s7.printStudentCourses();
         s6.printCountOfUnits();
+
+
     }
 }
