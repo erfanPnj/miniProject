@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Course {
     private final String courseName;
@@ -12,7 +11,7 @@ public class Course {
     private List<Assignment> activeProjects = new ArrayList<>();
     private List<Assignment> deactiveProjects = new ArrayList<>();
     private int presentedSemester;
-    private List<Double> scores = new ArrayList<>();
+    private Map<Student, Double> scores = new HashMap<>();
 
     public Course(String courseName, Teacher courseTeacher, int countOfUnits, String examDate, int presentedSemester, boolean status) {
         this.courseName = courseName;
@@ -44,8 +43,8 @@ public class Course {
         this.presentedSemester = presentedSemester;
     }
 
-    public void setScores(List<Double> scores) {
-        this.scores = scores;
+    public void setScores (Student student, double point) {
+        scores.put(student, point);
     }
 
     public String getCourseName() {
@@ -88,7 +87,7 @@ public class Course {
         return presentedSemester;
     }
 
-    public List<Double> getScores() {
+    public Map<Student, Double> getScores() {
         return scores;
     }
 
@@ -108,11 +107,19 @@ public class Course {
         // after eliminating a student from a course, it should drop the course and unit:
         student.setCountOfCourses(student.getCountOfCourses() - 1);
         student.setCountOfUnits(student.getCountOfUnits() - this.countOfUnits);
+        for (Student k : scores.keySet()) {
+            if (k.getId().equals(student.getId())) {
+                scores.remove(k);
+                // after removing the target student, to avoid ConcurrntModificationError, we break this loop
+                break;
+            }
+        }
     }
 
     public double highestScore () {
-        scores.sort((Double::compareTo)); // ascending sort will put the highest score at last index:
-        return scores.getLast();
+        List<Double> score = new ArrayList<>(scores.values());
+        score.sort((Double::compareTo));
+        return score.getLast();
     }
 
 

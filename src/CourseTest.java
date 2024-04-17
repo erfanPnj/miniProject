@@ -42,6 +42,10 @@ public class CourseTest {
         teacher.rateStudents("EC", "112255", 19.77);
 
         assertEquals(19.77, course1.highestScore(), 0.0001);
+        //if a student is being deleted, the related grade should also be deleted.
+        teacher.removeStudentFromACourse(s3, course1);
+        teacher.rateStudents("EC", "112244", 20);
+        assertEquals(20, course1.highestScore(), 0.0001);
     }
 
 

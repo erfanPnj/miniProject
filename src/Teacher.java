@@ -74,10 +74,10 @@ public class Teacher {
     public void rateStudents (String courseName, String studentId, double point) {
         for (Course c : presentedCourses) {
             if (c.getCourseName().equals(courseName)) {
-                // given grade is added to scores of this course to use for finding higher score (highestScore() in Course.java):
-                c.getScores().add(point);
                 for (Student s : c.getStudentList()) {
                     if (s.getId().equals(studentId)) {
+                        // given grade is added to scores of this course to use for finding higher score (highestScore() in Course.java):
+                        c.getScores().put(s, point);
                         s.setCountOfAllOfGrades(s.getCountOfAllOfGrades() + 1); // A grade has been added.
                         s.setAllOfPoints(s.getAllOfPoints() + point);
                         if (c.getPresentedSemester() == Faculty.getSemester()) {
